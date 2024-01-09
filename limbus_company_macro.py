@@ -4,6 +4,7 @@ import limbus_company_function as limbus
 
 
 pyautogui.click(100, 200) # 게임 화면 클릭
+
 #limbus.continuous_scroll_down() # 스크롤 확대 이미지 크기 확대 -> Confidence 값 확보
 def execute_macro(stage=1, priority=True): # 진행하는 층 수와 우선순의 매개변수를 이어받음
     limbus.boss=stage-1 # 현재 진행하는 층 수 전역변수에 저장
@@ -22,7 +23,6 @@ def execute_macro(stage=1, priority=True): # 진행하는 층 수와 우선순�
                 elif limbus.search_sento() : #일반 전투방 진입 시
                     print("전투방 발견")
                     limbus.while_sento()
-                    print("일반 전투방 전투 진행중...")
 
                 elif limbus.search_sentto() or limbus.search_senttto() : # 하드 전투방과 환상체 전투방 진입 시
                     print("하드 전투방, 환상체 전투방 발견")
@@ -35,7 +35,6 @@ def execute_macro(stage=1, priority=True): # 진행하는 층 수와 우선순�
                 if limbus.search_sento():  # 일반 전투방 진입 시
                     print("전투방 발견")
                     limbus.while_sento()
-                    print("일반 전투방 전투 진행중...")
 
                 elif limbus.search_sentto() or limbus.search_senttto():  # 하드 전투방과 환상체 전투방 진입 시
                     print("하드 전투방, 환상체 전투방 발견")

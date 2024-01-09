@@ -4,7 +4,7 @@ import time
 #=======================================================================================
 #                                      변수
 #=======================================================================================
-#pyautogui.FAILSAFE=False
+#pyautogui.FAILSAFE=False # 좌표 에러 무시
 boss=0 # 현재 돌고 있는 던전 층 수
 x,y=0,0 # 탐색을 시도할 pixel 영역 지정 변수
 
@@ -75,9 +75,9 @@ def find_image_on_screen(image_paths, set_cordination=True):
                 #pyautogui.moveTo(region_right, region_bottom)
                 #time.sleep(2)
                 #print(f"{region_left}, {region_top},{region_right},{region_bottom}에서 이미지 탐색")
-                location = pyautogui.locateOnScreen(image, confidence=0.8,region=(region_left, region_top, region_right, region_bottom))
+                location = pyautogui.locateOnScreen(image, confidence=0.7,region=(region_left, region_top, region_right, region_bottom))
             elif set_cordination==False : # 좌표 지정이 꺼져 있다면 무시하고 전체화면에서 이미지 검색
-                location = pyautogui.locateOnScreen(image, confidence=0.8)
+                location = pyautogui.locateOnScreen(image, confidence=0.7)
             if location is not None:
                 #print(f"이미지가 발견된 좌표: {location[0]}, {location[1]}")
                 pyautogui.moveTo(location[0], location[1])
@@ -123,7 +123,7 @@ current_position_img=[(rf'.\current_position{i}.png') for i in range(7)]
 
 #일반 전투방
 #sento_img=[r'.\sento.png',r'.\sento1.png',r'.\sento2.png',r'.\sento3.png',r'.\sento4.png',r'.\sento5.png',r'.\sento6.png', ...... 너무 많아진다]
-sento_img=[(rf'.\sento{i}.png') for i in range(17)] # list_comprehention적용
+sento_img=[(rf'.\sento{i}.png') for i in range(19)] # list_comprehention적용
 
 #하드 전투방
 sentto_img=[(rf'.\sentto{i}.png') for i in range(5)]
