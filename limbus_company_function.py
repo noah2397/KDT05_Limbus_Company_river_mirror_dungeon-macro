@@ -1,11 +1,21 @@
 import pyautogui
 from PIL import Image
 import time
+#=======================================================================================
+#                                      변수
+#=======================================================================================
 #pyautogui.FAILSAFE=False
 boss=0 # 현재 돌고 있는 던전 층 수
 x,y=0,0 # 탐색을 시도할 pixel 영역 지정 변수
 
 
+#=======================================================================================
+#                                 이미지 파악 전용 함수
+#=======================================================================================
+# def find_image_on_screen_position
+# def find_image_on_screen
+# def continuous_scroll_down
+# def drag
 
 #현재 플레이어 위치 좌표 반환 함수(초기값 전용 함수)
 def find_image_on_screen_position(image_paths):
@@ -102,16 +112,39 @@ def drag(): # 화면을 끌어잡고 왼쪽/오른쪽으로 끌기
     # 드래그 액션 종료
     pyautogui.mouseUp()
 
+
+#=======================================================================================
+#                                 이미지 에셋
+#=======================================================================================
+
+#================================= 맵 진행 방 ===========================================
+#현재 위치(빨간 기차)
+current_position_img=[(rf'.\current_position{i}.png') for i in range(7)]
+
 #일반 전투방
 #sento_img=[r'.\sento.png',r'.\sento1.png',r'.\sento2.png',r'.\sento3.png',r'.\sento4.png',r'.\sento5.png',r'.\sento6.png', ...... 너무 많아진다]
 sento_img=[(rf'.\sento{i}.png') for i in range(17)] # list_comprehention적용
 
 #하드 전투방
-sentto_img=[(rf'.\sentto{i}.png') for i in range(4)]
+sentto_img=[(rf'.\sentto{i}.png') for i in range(5)]
 
 #환상체 전투방
-senttto_img=[(rf'.\senttto{i}.png') for i in range(5)]
+senttto_img=[(rf'.\senttto{i}.png') for i in range(6)]
 
+# ???방 이미지
+why_img=[(rf'.\why{i}.png') for i in range(12)]
+
+# 보스방
+boss_img=[(rf'.\boss{i}.png') for i in range(8)]
+
+#상점방
+store_img=[(rf'.\store{i}.png') for i in range(6)]
+
+#휴식방
+rest_img=[(rf'.\rest{i}.png') for i in range(6)]
+#=========================================================================================
+
+#================================= 버튼 이미지 에셋 =========================================
 # 승률 버튼 이미지
 kachi_img=[r'.\kachi.png']
 
@@ -127,9 +160,6 @@ sentoStart_img=[(rf'.\sento_start{i}.png') for i in range(2)]
 # 승리 판별 이미지
 victory_img=[r'.\victory.png']
 
-# ???방 이미지
-why_img=[(rf'.\why{i}.png') for i in range(12)]
-
 # skip버튼 이미지
 skip_img=[r'.\skip.png']
 
@@ -142,28 +172,49 @@ ego_select_kakutei=[r'.\ego_select_kakutei.png']
 # Boss 전투 후 EGO 선택-> 확정 -> 확인 이미지
 ego_select_kakunin=[r'.\ego_select_kakunin.png']
 
-# 보스방
-boss_img=[(rf'.\boss{i}.png') for i in range(8)]
-
 # ??? 방 완료 후 돌아가기 버튼
 why_return=[r'.\why_return.png']
 
-#상점방
-store_img=[(rf'.\store{i}.png') for i in range(6)]
-
 #나가기 전 OK버튼
 store_ok_img=[r'.\store_ok.png']
-
-#휴식방
-rest_img=[(rf'.\rest{i}.png') for i in range(5)]
-
-#현재 위치(빨간 기차)
-current_position_img=[(rf'.\current_position{i}.png') for i in range(6)]
-
+#=================================== 미 완성 에셋 =========================================
 #파열 텍스트 이미지
 pa_img=[f'.\pa.png']
 
 
+
+#=======================================================================================
+#                               이미지 인식 시퀸스 함수
+#=======================================================================================
+#================================== 기본 전투 ============================================
+def sento() :
+    if find_image_on_screen(kachi_img,set_cordination=False): # 전투 "승률"버튼 클릭
+        print("승률 버튼 클릭")
+        find_image_on_screen(start_img,set_cordination=False)  # 전투 시작(시계) 버튼 클릭
+        print("전투 시작")
+
+def while_sento():
+    time.sleep(7)  # 전투방 입장 후 로딩 텀 부여
+    print("7초 휴식")
+    continuous_scroll_down()  # 스크롤 확대
+    print("스크롤 확대 완료")
+    while not find_image_on_screen(victory_img,set_cordination=False):  # 승리 화면이 나타나기 전까지
+        print("전투중.....")
+        sento()  # 계속 "승률"-"시작" 반복
+    print("전투 승리 후 7초 대기")
+    time.sleep(7)  # 승리 후 로딩 텀 부여
+#==================================== 에고 선택 함수 =======================================
+# 보스 처치 후 EGO 선택 화면
+def EGO_select():
+    if find_image_on_screen(ego_select_img,set_cordination=False):  # 보스 처치 후 EGO선택 화면
+        print("EGO 선택 화면 진입")
+        find_image_on_screen(ego_select_kakutei,set_cordination=False)  # EGO선택 후 "EGO기프트 선택"클릭
+        time.sleep(5)
+        print("EGO 선택 완료 및 대기 5초")
+        find_image_on_screen(ego_select_kakunin,set_cordination=False)  # 다음 스테이지로 이동 후 "확인" 클릭
+        print("최종 확인 클릭")
+        boss=0
+#==================================== 탐색 함수 ===========================================
 def search_store() :
     if find_image_on_screen(store_img):
         print("상점 발견")
@@ -176,6 +227,7 @@ def search_store() :
         continuous_scroll_down(wheel_count=5, flag=-1)
         return True
 
+# 휴식방 탐색 후 입장
 def search_rest() :
     if find_image_on_screen(rest_img):
         print("휴식처 발견")
@@ -188,12 +240,6 @@ def search_rest() :
         continuous_scroll_down(wheel_count=5, flag=-1)
         return True
 
-def sento() :
-    if find_image_on_screen(kachi_img,set_cordination=False): # 전투 "승률"버튼 클릭
-        print("승률 버튼 클릭")
-        find_image_on_screen(start_img,set_cordination=False)  # 전투 시작(시계) 버튼 클릭
-        print("전투 시작")
-
 # 일반 전투방 탐색 후 입장
 def search_sento():
     if find_image_on_screen(sento_img): # 전투 아이콘 클릭(검 1개짜리)
@@ -205,6 +251,7 @@ def search_sento():
             find_image_on_screen(sentoStart_img,set_cordination=False)  # "전투 시작" 딸깍
             print("전투시작 버튼 클릭")
             return True
+
 # 하드 전투방 탐색 후 입장
 def search_sentto():
     if find_image_on_screen(sentto_img): # 하드 전투 아이콘 클릭(검 2개짜리)
@@ -247,17 +294,6 @@ def search_Boss():
                 break
         return True
 
-# 보스 처치 후 EGO 선택 화면
-def EGO_select():
-    if find_image_on_screen(ego_select_img,set_cordination=False):  # 보스 처치 후 EGO선택 화면
-        print("EGO 선택 화면 진입")
-        find_image_on_screen(ego_select_kakutei,set_cordination=False)  # EGO선택 후 "EGO기프트 선택"클릭
-        time.sleep(5)
-        print("EGO 선택 완료 및 대기 5초")
-        find_image_on_screen(ego_select_kakunin,set_cordination=False)  # 다음 스테이지로 이동 후 "확인" 클릭
-        print("최종 확인 클릭")
-        boss=0
-
 # ???방 탐색 후 입장
 def search_Why():
     if find_image_on_screen(why_img) :  # 물음표 방 탐색
@@ -275,13 +311,4 @@ def search_Why():
             print("최종 확인 클릭")
             continuous_scroll_down(wheel_count=5, flag=-1)
 
-def while_sento():
-    time.sleep(7)  # 전투방 입장 후 로딩 텀 부여
-    print("7초 휴식")
-    continuous_scroll_down()  # 스크롤 확대
-    print("스크롤 확대 완료")
-    while not find_image_on_screen(victory_img,set_cordination=False):  # 승리 화면이 나타나기 전까지
-        print("전투중.....")
-        sento()  # 계속 "승률"-"시작" 반복
-    print("전투 승리 후 7초 대기")
-    time.sleep(7)  # 승리 후 로딩 텀 부여
+
