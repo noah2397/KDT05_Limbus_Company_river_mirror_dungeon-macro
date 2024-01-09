@@ -119,26 +119,26 @@ def drag(): # 화면을 끌어잡고 왼쪽/오른쪽으로 끌기
 
 #================================= 맵 진행 방 ===========================================
 #현재 위치(빨간 기차)
-current_position_img=[(rf'.\current_position{i}.png') for i in range(7)]
+current_position_img=[(rf'.\current_position{i}.png') for i in range(8)]
 
 #일반 전투방
 #sento_img=[r'.\sento.png',r'.\sento1.png',r'.\sento2.png',r'.\sento3.png',r'.\sento4.png',r'.\sento5.png',r'.\sento6.png', ...... 너무 많아진다]
-sento_img=[(rf'.\sento{i}.png') for i in range(19)] # list_comprehention적용
+sento_img=[(rf'.\sento{i}.png') for i in range(20)] # list_comprehention적용
 
 #하드 전투방
 sentto_img=[(rf'.\sentto{i}.png') for i in range(5)]
 
 #환상체 전투방
-senttto_img=[(rf'.\senttto{i}.png') for i in range(6)]
+senttto_img=[(rf'.\senttto{i}.png') for i in range(7)]
 
 # ???방 이미지
-why_img=[(rf'.\why{i}.png') for i in range(12)]
+why_img=[(rf'.\why{i}.png') for i in range(13)]
 
 # 보스방
-boss_img=[(rf'.\boss{i}.png') for i in range(8)]
+boss_img=[(rf'.\boss{i}.png') for i in range(14)]
 
 #상점방
-store_img=[(rf'.\store{i}.png') for i in range(6)]
+store_img=[(rf'.\store{i}.png') for i in range(8)]
 
 #휴식방
 rest_img=[(rf'.\rest{i}.png') for i in range(6)]
@@ -209,7 +209,7 @@ def EGO_select():
     if find_image_on_screen(ego_select_img,set_cordination=False):  # 보스 처치 후 EGO선택 화면
         print("EGO 선택 화면 진입")
         find_image_on_screen(ego_select_kakutei,set_cordination=False)  # EGO선택 후 "EGO기프트 선택"클릭
-        time.sleep(5)
+        time.sleep(3)
         print("EGO 선택 완료 및 대기 5초")
         find_image_on_screen(ego_select_kakunin,set_cordination=False)  # 다음 스테이지로 이동 후 "확인" 클릭
         print("최종 확인 클릭")
