@@ -1,6 +1,4 @@
 import pyautogui
-from PIL import Image
-import time
 import limbus_company_function as limbus
 
 
