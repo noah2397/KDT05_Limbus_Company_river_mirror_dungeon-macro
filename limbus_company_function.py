@@ -135,7 +135,7 @@ senttto_img=[(rf'.\senttto{i}.png') for i in range(7)]
 why_img=[(rf'.\why{i}.png') for i in range(13)]
 
 # 보스방
-boss_img=[(rf'.\boss{i}.png') for i in range(14)]
+boss_img=[(rf'.\boss{i}.png') for i in range(16)]
 
 #상점방
 store_img=[(rf'.\store{i}.png') for i in range(8)]
