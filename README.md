@@ -1,4 +1,13 @@
-# Limbus_Company_river_mirror_dungeon macro
-# 삼조가 K사 원액에 몸을 던지기 전 마지막으로 남긴 유산입니다
-![Image](https://github.com/noah2397/Limbus_Company_river_mirror_dungeon-macro/assets/42794561/995a4fd5-e50e-42ae-9f6f-b45e71502363)
-# (삼조, K Corp.)
+#Limbus Company River-dungeon Macro(Updating...)
+
+
+
+
+
+
+이미지 인식 기반 Limbus 거울던전 매크로
+상업적 이용 및 사용은 금지입니다
+개인취미용으로 개발하는 중입니다
+
+전범위적 사용을 막기 위해 핵심 코드 제거하였습니다
+<img src="https://preview.redd.it/pwwq0hp4qi081.png?width=1920&format=png&auto=webp&s=965131288ed161345068bb4fe5075dd181927066)https://preview.redd.it/pwwq0hp4qi081.png?width=1920&format=png&auto=webp&s=965131288ed161345068bb4fe5075dd181927066" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
