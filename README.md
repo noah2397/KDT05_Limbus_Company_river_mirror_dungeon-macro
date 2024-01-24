@@ -1,4 +1,4 @@
-#Limbus Company River-dungeon Macro(Updating...)
+### Limbus Company River-dungeon Macro(Updating...)
 
 
 
@@ -10,4 +10,6 @@
 개인취미용으로 개발하는 중입니다
 
 전범위적 사용을 막기 위해 핵심 코드 제거하였습니다
-<img src="https://preview.redd.it/pwwq0hp4qi081.png?width=1920&format=png&auto=webp&s=965131288ed161345068bb4fe5075dd181927066)https://preview.redd.it/pwwq0hp4qi081.png?width=1920&format=png&auto=webp&s=965131288ed161345068bb4fe5075dd181927066" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
+
+
+<img src="https://i.pinimg.com/originals/20/78/a9/2078a921387fb535735b19820175bacf.jpg" width="500">
